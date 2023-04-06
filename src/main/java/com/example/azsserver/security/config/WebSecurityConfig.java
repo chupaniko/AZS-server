@@ -22,7 +22,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests().antMatchers(
-                "/api/authentication/**"
+                "/api/authentication/**",
+                "/api/saveTopology",
+                "/api/getTopologyByName",
+                "/api/getTopologiesByUser"
         ).permitAll().anyRequest().authenticated().and().formLogin();
     }
 

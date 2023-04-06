@@ -21,13 +21,14 @@ public class Topology {
     )
     private Long id;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(
             nullable = false,
             name = "app_user_id"
     )
     private AppUser appUser;
     @Column(nullable = false)
+    @Lob
     private String topologyJSON;
     @Column(nullable = false)
     private String topologyName;

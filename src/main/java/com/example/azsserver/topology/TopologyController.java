@@ -14,7 +14,7 @@ import java.util.List;
 public class TopologyController {
     private final TopologyService topologyService;
 
-    @PostMapping(value="api/saveTopology", produces="application/json")
+    @PostMapping("api/saveTopology")
     public ResponseEntity<Topology> saveTopology(@RequestBody TopologyRequest request) {
         return ResponseEntity.ok(topologyService.saveTopology(request));
     }
