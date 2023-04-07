@@ -26,4 +26,5 @@ public class TopologyController {
     public ResponseEntity<List<Topology>> getTopologiesByUser(@RequestBody TopologyRequest request) {
         return ResponseEntity.ok(topologyService.getTopologiesByUser(request));
     }
+    //TODO: getTopologyNamesByUser
 }
