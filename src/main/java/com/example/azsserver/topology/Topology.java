@@ -9,16 +9,9 @@ import java.util.Objects;
 @Entity
 @NoArgsConstructor
 public class Topology {
-    @SequenceGenerator(
-            name = "topologyIdSequenceGenerator",
-            sequenceName = "topologyIdSequenceGenerator",
-            allocationSize = 1
-    )
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "topologyIdSequenceGenerator"
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false, updatable = false)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -30,7 +23,7 @@ public class Topology {
     @Column(nullable = false)
     @Lob
     private String topologyJSON;
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String topologyName;
 
     public AppUser getAppUser() {
@@ -43,6 +36,14 @@ public class Topology {
 
     public String getTopologyName() {
         return topologyName;
+    }
+
+    public void setTopologyJSON(String topologyJSON) {
+        this.topologyJSON = topologyJSON;
+    }
+
+    public void setTopologyName(String topologyName) {
+        this.topologyName = topologyName;
     }
 
     public Topology(AppUser appUser, String topologyJSON, String topologyName) {

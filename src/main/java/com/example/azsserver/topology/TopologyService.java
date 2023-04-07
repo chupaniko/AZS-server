@@ -17,9 +17,14 @@ public class TopologyService {
         String username = request.getUsername();
         String topologyName = request.getTopologyName();
         String topologyJSON = request.getTopologyJSON();
-        Topology topology = new Topology(userService.getUserByUsername(username), topologyJSON, topologyName);
+        Topology topology = topologyRepository.findTopologyByTopologyName(topologyName).orElse(null);
+        if (topology != null) {
+            topology.setTopologyName(topologyName);
+            topology.setTopologyJSON(topologyJSON);
+        } else {
+            topology = new Topology(userService.getUserByUsername(username), topologyJSON, topologyName);
+        }
         topologyRepository.save(topology);
-
         return topology;
     }
     public Topology getTopologyByName(TopologyRequest request) {

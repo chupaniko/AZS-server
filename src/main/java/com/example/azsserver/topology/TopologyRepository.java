@@ -10,5 +10,6 @@ import java.util.Optional;
 public interface TopologyRepository extends JpaRepository<Topology, Long> {
     @Transactional
     Optional<List<Topology>> findTopologiesByAppUser(AppUser appUser);
+    @Transactional
     Optional<Topology> findTopologyByTopologyName(String topologyName);
 }
